@@ -6,6 +6,8 @@ import Productos from './pages/Productos';
 import Usuarios from './pages/Usuarios';
 import Ventas from './pages/Ventas';
 import Login from './pages/Login';
+import 'bootstrap/dist/css/bootstrap.min.css'
+import './styles.css'
 
 
 
