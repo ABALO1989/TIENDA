@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.fondoImagen{
+    background-image: url('./media/FotoMascotas.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    height: 100%;
+   
+    
+}
