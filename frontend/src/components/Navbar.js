@@ -7,7 +7,7 @@ import logo from '../media/logo.png'
 const Navbar = () => {
     return (
         <div>
-            <ul className="flex space-x-40 items-center font-mono font-bold  bg-yellow-300 p-2">
+            <ul className="flex justify-around items-center font-mono font-bold  bg-yellow-300 p-2 ">
                 <li className="pl-12"> 
                     <img className='h-20'
                     src={logo} 
@@ -24,7 +24,7 @@ const Navbar = () => {
                 </li>
 
                 <li className="mr-6">
-                <Link className="text-yellow-900 hover:text-red-400" to='/'>SALIR</Link>
+                <Link className="text-yellow-900 hover:text-red-400 pr-20" to='/'>SALIR</Link>
                 </li>
             </ul>
         </div>

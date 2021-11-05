@@ -15,8 +15,8 @@ const ventaSchema= new Schema({
     },
     IDproducto:{
         type: String,
-        required: true,
-        unique: true
+        required: true
+    
     
     },
     cantidad:{
