@@ -1,13 +1,6 @@
 const { Shema, model, Schema } = require('mongoose')
 
 const ventaSchema= new Schema({
-    IDventa:{
-        type: String,
-        required: true,
-        unique: true
-        
-
-    },
     valorTotal:{
         type: Number,
         required: true

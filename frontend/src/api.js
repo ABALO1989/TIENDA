@@ -42,3 +42,44 @@ export const eliminarProducto= async (id, successCallback, errorCallback) => {
   };
   await axios.request(options).then(successCallback).catch(errorCallback);
 };
+
+//CRUD PARA VENTAS
+
+export const obtenerVentas = async (successCallback, errorCallback) => {
+  const options = {
+    method: 'GET',
+    url: `${baseURL}/ventas/`,
+  
+  };
+  await axios.request(options).then(successCallback).catch(errorCallback);
+};
+
+
+export const crearVenta = async (data, successCallback, errorCallback) => {
+  const options = {
+    method: 'POST',
+    url: `${baseURL}/ventas/`,
+    headers: { 'Content-Type': 'application/json' },
+    data,
+  };
+  await axios.request(options).then(successCallback).catch(errorCallback);
+};
+
+export const editarVenta= async (id, data, successCallback, errorCallback) => {
+  const options = {
+    method: 'PUT',
+    url: `${baseURL}/ventas/${id}/`,
+    headers: { 'Content-Type': 'application/json' },
+    data,
+  };
+  await axios.request(options).then(successCallback).catch(errorCallback);
+};
+
+export const eliminarVenta= async (id, successCallback, errorCallback) => {
+  const options = {
+    method: 'DELETE',
+    url: `${baseURL}/ventas/${id}/`,
+    headers: { 'Content-Type': 'application/json' },
+  };
+  await axios.request(options).then(successCallback).catch(errorCallback);
+};
