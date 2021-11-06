@@ -369,11 +369,11 @@ const FormularioCreacionProductos = ({ setMostrarTabla }) => {
   return (
     <div>
       <h2 className='text-lg font-bold font-mono text-yellow-900 pb-6 pt-6 text-center'>CREAR NUEVO PRODUCTO </h2>
-    
+
       <form ref={form} onSubmit={submitForm} className='bg-gray-50 border border-gray-600 p-2 rounded-lg m-2 inline-block' >
 
         <label htmlFor='descripcion'>
-          Descripción: 
+          Descripción:
           <input
             className='border border-gray-600 p-2 rounded-lg m-2'
             name='descripcion'
@@ -382,35 +382,36 @@ const FormularioCreacionProductos = ({ setMostrarTabla }) => {
             required
 
           />
-          <label htmlFor='valor'>
-            Valor: 
-            <input
-              name='valorUnitario'
-              className='border border-gray-600 p-2 rounded-lg m-2'
-              type='number'
-              placeholder='Precio venta'
-              required
+        </label>
+        <label htmlFor='valor'>
+          Valor:
+          <input
+            name='valorUnitario'
+            className='border border-gray-600 p-2 rounded-lg m-2'
+            type='number'
+            placeholder='Precio venta'
+            required
 
-            />
-          </label>
-          <label  htmlFor='estado'>
-            Estado
-            <select name="estado"
-              className=' border border-gray-600 p-2 rounded-lg m-2'
-              required
-              defaultValue={0}
+          />
+        </label>
+        <label htmlFor='estado'>
+          Estado
+          <select name="estado"
+            className=' border border-gray-600 p-2 rounded-lg m-2'
+            required
+            defaultValue={0}
 
-            >
-              <option disabled value={0}>
-                Seleccione una opción
-              </option>
-              <option>Disponible</option>
-              <option>No Disponible</option>
-            </select>
-
-          </label>
+          >
+            <option disabled value={0}>
+              Seleccione una opción
+            </option>
+            <option>Disponible</option>
+            <option>No Disponible</option>
+          </select>
 
         </label>
+
+
 
 
         <button

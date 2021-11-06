@@ -443,45 +443,71 @@ const FormularioCreacionVentas = ({ setMostrarTabla }) => {
         <div>
             <h2 className='text-lg font-bold font-mono text-yellow-900 pb-6 pt-6 text-center'>CREAR NUEVA VENTA </h2>
 
-            <form ref={form} onSubmit={submitForm} className='bg-gray-50 border border-gray-600 p-2 rounded-lg m-2 inline-block' >
+            <form ref={form} onSubmit={submitForm} className='bg-gray-50 border border-gray-600 p-2 rounded-lg m-2 flex flex-col' >
 
                 <label htmlFor='valorTotal'>
-                    :
+                    Valor Total:
                     <input
                         className='border border-gray-600 p-2 rounded-lg m-2'
                         name='valorTotal'
-                        type="text"
-                        placeholder=''
+                        type="number"
+                        placeholder='Valor total'
                         required
 
                     />
-                    <label htmlFor='valor'>
-                        Valor:
-                        <input
-                            name='IDproducto'
-                            className='border border-gray-600 p-2 rounded-lg m-2'
-                            type='number'
-                            placeholder='Precio venta'
-                            required
+                </label>
+                <label htmlFor='IDproducto'>
+                    ID Producto
+                    <input
+                        name='IDproducto'
+                        className='border border-gray-600 p-2 rounded-lg m-2'
+                        type='text'
+                        placeholder='ID producto'
+                        required
 
-                        />
-                    </label>
-                    <label htmlFor='cantidad'>
-                        cantidad
-                        <select name="cantidad"
-                            className=' border border-gray-600 p-2 rounded-lg m-2'
-                            required
-                            defaultValue={0}
+                    />
+                </label>
+                <label htmlFor='valor'>
+                    ID Producto
+                    <input
+                        name='IDproducto'
+                        className='border border-gray-600 p-2 rounded-lg m-2'
+                        type='number'
+                        placeholder='ID producto'
+                        required
 
-                        >
-                            <option disabled value={0}>
-                                Seleccione una opción
-                            </option>
-                            <option>Disponible</option>
-                            <option>No Disponible</option>
-                        </select>
+                    />
+                </label>
+                
+                <label htmlFor='valor'>
+                    ID Producto
+                    <input
+                        name='IDproducto'
+                        className='border border-gray-600 p-2 rounded-lg m-2'
+                        type='number'
+                        placeholder='ID producto'
+                        required
 
-                    </label>
+                    />
+                </label>
+
+
+                <label htmlFor='cantidad'>
+                    cantidad
+                    <select name="cantidad"
+                        className=' border border-gray-600 p-2 rounded-lg m-2'
+                        required
+                        defaultValue={0}
+
+                    >
+                        <option disabled value={0}>
+                            Seleccione una opción
+                        </option>
+                        <option>Disponible</option>
+                        <option>No Disponible</option>
+                    </select>
+
+
 
                 </label>
 
