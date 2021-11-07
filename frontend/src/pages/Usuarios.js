@@ -9,6 +9,8 @@ const Usuarios = () => {
 
   useEffect(() => {
     const fetchUsuarios = async () => {
+
+      
       await obtenerUsuarios(
         (respuesta) => {
           console.log('usuarios', respuesta.data);

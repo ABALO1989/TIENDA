@@ -89,7 +89,7 @@ const Ventas = () => {
               setProductos={setVentas}
             />
           )}
-          <ToastContainer position='bottom-center' autoClose={5000} />
+          <ToastContainer position='bottom-center' autoClose={3000} />
         </div>
     
 
@@ -116,7 +116,7 @@ const TablaVentas = ({ loading, listaVentas, setEjecutarConsulta }) => {
                 <input
                     value={busqueda}
                     onChange={(e) => setBusqueda(e.target.value)}
-                    placeholder='ID/ valorTotal / valor/'
+                    placeholder='IDventa/IDcliente/nombre'
                     className='border-2 border-yellow-900 px-4 py-1 self-start rounded-md focus:outline-none focus:border-yellow-500'
 
                 />
@@ -160,6 +160,8 @@ const TablaVentas = ({ loading, listaVentas, setEjecutarConsulta }) => {
                             <span>{el.fechaVenta}</span>
                             <span>{el.IDcliente}</span>
                             <span>{el.nombreCliente}</span>
+                            <span>{el.vendedor}</span>
+                            <span>{el.valorTotal}</span>
                         </div>
                     );
                 })}
