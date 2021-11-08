@@ -103,9 +103,9 @@ const NuevaVenta = () => {
   };
 
   return (
-    <div className='flex h-full w-full items-center justify-center'>
-      <form ref={form} onSubmit={submitForm} className='flex flex-col h-full'>
-        <h1 className='text-3xl font-extrabold text-gray-900 my-3'>Crear una nueva venta</h1>
+    <div className='flex h-full w-full items-center justify-center '>
+      <form ref={form} onSubmit={submitForm} className='flex flex-col h-full font-mono text-yellow-900'>
+        <h1 className='text-xl font-bold  my-3'>CREAR NUEVA VENTA</h1>
         <label className='flex flex-col' htmlFor='fechaVenta'>
           <span className='text-l font-gray-900'>Fecha Venta</span>
           <input
@@ -135,7 +135,6 @@ const NuevaVenta = () => {
         </label>
         
         <label className='flex flex-col' htmlFor='vendedor'>
-          <span className='text-2xl font-gray-900'>Vendedor</span>
           <select name='vendedor' className='p-2' defaultValue='' required>
             <option disabled value=''>
               Seleccione un Vendedor
@@ -153,7 +152,7 @@ const NuevaVenta = () => {
         />
 
         <label className='flex flex-col'>
-          <span className='text-2xl font-gray-900'>Valor Total Venta</span>
+          <span className='text-l pt-3 font-gray-900'>Valor Total Venta</span>
           <input
             className='bg-gray-50 border border-gray-600 p-2 rounded-lg m-2'
             type='number'
@@ -163,7 +162,7 @@ const NuevaVenta = () => {
         </label>
         <button
           type='submit'
-          className='col-span-2 bg-green-400 p-2 rounded-full shadow-md hover:bg-green-600 text-white'
+          className='col-span-2 bg-green-400 p-2 pb-6 rounded-xl shadow-md hover:bg-green-600 text-white'
         >
           Crear Venta
         </button>
@@ -206,7 +205,7 @@ const TablaProductos = ({ productos,setProductos,setProductosTabla }) => {
   return (
     <div>
       <div className='flex '>
-        <label className='flex flex-col' htmlFor='producto'>
+        <label className='flex flex-col mr-8' htmlFor='producto'>
           <select
             className='p-2'
             value={productoAAgregar._id ?? ''}
@@ -230,7 +229,7 @@ const TablaProductos = ({ productos,setProductos,setProductosTabla }) => {
         <button
           type='button'
           onClick={() => agregarNuevoProducto()}
-          className='col-span-2 bg-green-400 p-2 rounded-full shadow-md hover:bg-green-600 text-white'
+          className='col-span-2 bg-green-400 p-2 rounded-xl font-bold shadow-md hover:bg-green-600 text-white'
         >
           Agregar Producto
         </button>
@@ -238,13 +237,13 @@ const TablaProductos = ({ productos,setProductos,setProductosTabla }) => {
       <table className='tabla'>
         <thead>
           <tr>
-            <th>Id Venta</th>
+          <th>ID Venta</th>
             <th>Valor Unitario</th>
             <th>Estado</th>
             <th>Cantidad</th>
             <th>Total</th>
             <th>Eliminar</th>
-            <th className='hidden'>Input</th>
+            
           </tr>
         </thead>
         <tbody>

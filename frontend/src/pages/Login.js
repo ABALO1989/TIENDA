@@ -3,17 +3,41 @@ import GoogleLogin from 'react-google-login';
 
 const Login = () => {
 
-    const respuestaGoogle=(respuesta)=>{
-        console.log(respuesta)
+    function responseGoogle(response){
+        if(response && response.tokenId ){
+            fetch('http://localhost:4000/login', {
+                method:'POST',
+                headers:{
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify ({
+                    token: response.tokenId,
+                    email: response.profileObj.email,
+                    nombres: response.profileObj.name,
+
+                })
+                
+
+            }).catch((err)=>console.error(err))
+            .then ((respuesta)=>respuesta.json()
+            .then ((respuestaServidor)=>{
+                console.log(respuestaServidor)
+            })
+            )
+
+        }
+
+        
     }
+    
     return (
         <div className='fondoImagen'>
             <div className='block pt-4'>
             <GoogleLogin
-                clientId="18048176545-6dptqp0s46sssjhsj96iffljn0o47p9n.apps.googleusercontent.com"
+                clientId="1013222702859-0eg3qo5hvs6s2cl5347rld1otne9tsia.apps.googleusercontent.com"
                 buttonText="Iniciar Sesión"
-                onSuccess={respuestaGoogle}
-                onFailure={respuestaGoogle}
+                onSuccess={responseGoogle}
+                onFailure={responseGoogle}
                 cookiePolicy={'single_host_origin'}
                
             />,
@@ -21,5 +45,6 @@ const Login = () => {
         </div>
     )
 }
+
 
 export default Login
