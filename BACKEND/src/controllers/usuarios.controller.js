@@ -9,10 +9,11 @@ usuariosCtrl.getUsuarios = async (req, res)=> {
 }
 
 usuariosCtrl.createUsuario = async (req, res)=> {
-    const { correo, rol, estado  } = req.body
+    const { nombre, email, rol, estado  } = req.body
 
     const newUsuario = new Usuario({
-        correo,
+        nombre,
+        email,
         rol,
         estado
     })
@@ -28,9 +29,9 @@ usuariosCtrl.getUsuario =async (req, res)=> {
 }
 
 usuariosCtrl.updateUsuario = async (req, res)=> {
-    const { correo, rol, estado } = req.body
+    const { email, rol, estado } = req.body
     await Usuario.findByIdAndUpdate(req.params.id, {
-        correo,
+        email,
         rol,
         estado
 
