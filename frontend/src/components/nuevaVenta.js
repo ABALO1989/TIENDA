@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { crearVenta } from '../api';
 import { obtenerProductos } from '../api';
 import { obtenerUsuarios } from '../api';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 

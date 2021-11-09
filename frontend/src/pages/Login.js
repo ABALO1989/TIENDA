@@ -8,22 +8,22 @@ const Login = () => {
             fetch('http://localhost:4000/login', {
                 method:'POST',
                 headers:{
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
                 },
                 body: JSON.stringify ({
                     token: response.tokenId,
                     email: response.profileObj.email,
-                    nombres: response.profileObj.name,
-
-                })
-                
-
+                    nombre: response.profileObj.name,
+                    
+                }) 
             }).catch((err)=>console.error(err))
-            .then ((respuesta)=>respuesta.json()
+            .then ((respuesta)=>respuesta.json())
             .then ((respuestaServidor)=>{
-                console.log(respuestaServidor)
+                localStorage.setItem('token', response.tokenId)
+                localStorage.setItem('usuario', JSON.stringify(respuestaServidor.usuario))
+                window.location.href ='/usuarios'
             })
-            )
+            
 
         }
 

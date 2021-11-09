@@ -1,133 +1,104 @@
-import { nanoid } from 'nanoid';
-import React, { useState, useEffect } from 'react';
-import { editarUsuario } from '../api';
-import { obtenerUsuarios } from '../api';
 
-const Usuarios = () => {
-  const [usuarios, setUsuarios] = useState([]);
+import React, { useEffect, useState } from "react";
+import {
+    Redirect
+} from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
 
+function Usuarios() {
+    let [loggedUser, setLoggedUser] = useState(
+        localStorage.getItem('usuario') ?
+            JSON.parse(localStorage.getItem('usuario')) :
+            null
+    );
+    let [token, setToken] = useState(true);
+    let [usuarios, setUsuarios] = useState([]);
 
-  useEffect(() => {
-    const fetchUsuarios = async () => {
+    useEffect(() => {
+        const tokenStorage = localStorage.getItem('token');
+        if (tokenStorage && loggedUser.rol === "Administrador") {
 
-      
-      await obtenerUsuarios(
-        (respuesta) => {
-          console.log('usuarios', respuesta.data);
-          setUsuarios(respuesta.data);
-        },
-        (err) => {
-          console.log(err);
+            fetch('http://localhost:4000/usuarios', {
+                headers: {
+                    'Content-Type': 'application/json',
+                    token: tokenStorage
+                }
+            }).catch((err) => console.error(err))
+                .then((response) => response.json())
+                .then((usuarios) => {
+
+                    setUsuarios(usuarios.usuarios);
+                });
+        } else {
+            alert('Usted no esta autorizado');
+            setToken(false);
         }
-      );
-    };
-    fetchUsuarios();
-  }, []);
+    }, []);
 
-  return (
-    <div className='flex h-full w-full flex-col items-center justify-start p-10 '>
-      <div className='text-2xl text-center font-mono font-bold text-yellow-900'>ADMINISTRACIÓN DE USUARIOS</div>
-        
-      <table className='tabla'>
-        <thead>
-          <tr>
-            <th>Nombre</th>
-            <th>Email</th>
-            <th>Estado</th>
-            <th>Rol</th>
-          </tr>
-        </thead>
-        <tbody>
-          {usuarios.map((user) => {
-            return (
-              <tr key={nanoid()}>
-                <td>{user.nombre}</td>
-                <td>{user.email}</td>
-                <td>
-                  <EstadoUsuario user={user} />
-                </td>
-                <td>
-                  <RolesUsuario user={user} />
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
-    </div>
-  );
-};
+   
 
-const RolesUsuario = ({ user }) => {
-  const [rol, setRol] = useState(user.rol);
 
-  useEffect(() => {
-    const editUsuario = async () => {
-      await editarUsuario(
-        user._id,
-        { rol },
-        (res) => {
-          console.log(res);
-        },
-        (err) => {
-          console.error(err);
-        }
-      );
-    };
-    if (user.rol !== rol) {
-      editUsuario();
+    function actualizarUsuario(e, usuario) {
+        // Llamar al servidor
+        const tokenStorage = localStorage.getItem('token');
+        const rol = e.target.value;
+        fetch('http://localhost:4000/actualizarUsuario', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                token: tokenStorage
+            },
+            body: JSON.stringify({
+                email: usuario.email,
+                nombre: usuario.nombre,
+                apellidos: usuario.apellidos,
+                rol: rol
+            })
+        }).catch((err) => console.error(err))
+            .then((response) => response.json())
+            .then((usuarios) => {
+                //alert('El usuario fue actualizado con exito');
+                toast.success('Usuario Actualizado exitosamente');
+            });
     }
-  }, [rol, user]);
 
-  return (
-    <select value={rol} onChange={(e) => setRol(e.target.value)}>
-      <option value='' disabled>
-        Seleccione un rol
-      </option>
-      <option value='admin'>Admin</option>
-      <option value='vendedor'>Vendedor</option>
-      <option value='sin rol'>Sin rol</option>
-    </select>
-  );
-};
-
-const EstadoUsuario = ({ user }) => {
-  const [estado, setEstado] = useState(user.estado ?? '');
-
-  useEffect(() => {
-    const editUsuario = async () => {
-      await editarUsuario(
-        user._id,
-        { estado },
-        (res) => {
-          console.log(res);
-        },
-        (err) => {
-          console.error(err);
-        }
-      );
-    };
-    if (user.estado !== estado) {
-      editUsuario();
-    }
-  }, [estado, user]);
-
-  return (
-    <select value={estado} onChange={(e) => setEstado(e.target.value)}>
-      <option value='' disabled>
-        Seleccione un estado
-      </option>
-      <option value='autorizado' className='text-green-500'>
-        Autorizado
-      </option>
-      <option value='pendiente' className='text-yellow-500'>
-        Pendiente
-      </option>
-      <option value='rechazado' className='text-red-500'>
-        Rechazado
-      </option>
-    </select>
-  );
-};
+    return (
+        <div>
+              <div>
+            {!token && <Redirect to='/Login' />}
+            <h1>Listar Usuarios</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nombre</th>
+                        <th>Rol</th>
+                        <th>Accion</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {
+                        usuarios.map((usuario) =>
+                            <tr key={usuario._id}>
+                                <td>{usuario._id.slice(20)}</td>
+                                <td>{usuario.nombre}</td>
+                                <td>{usuario.rol}</td>
+                                <td>
+                                    <select onChange={(e) => { actualizarUsuario(e, usuario) }} value={usuario.rol}>
+                                        <option value="Administrador">Administrador</option>
+                                        <option value="Vendedor">Vendedor</option>
+                                        <option value="Pendiente">Pendiente</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        )
+                    }
+                </tbody>
+            </table>
+        </div>
+        <ToastContainer position='bottom-center' autoClose={3000} />
+        </div>
+    )
+}
 
 export default Usuarios;
