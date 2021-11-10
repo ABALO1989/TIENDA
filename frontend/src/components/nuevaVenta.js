@@ -79,7 +79,7 @@ const NuevaVenta = () => {
    
 
     await crearVenta({
-      vendedor: vendedores.filter((v) => v._id === nuevaVenta.vendedor)[0],
+      vendedor: vendedores.vendedor,
       cantidad: nuevaVenta.valorTotal,
       productos: listaProductos,
       IDcliente: nuevaVenta.IDcliente,
@@ -135,13 +135,14 @@ const NuevaVenta = () => {
         </label>
         
         <label className='flex flex-col' htmlFor='vendedor'>
-          <select name='vendedor' className='p-2' defaultValue='' required>
+          <select name='vendedor' className='p-2' defaultValue='' >
             <option disabled value=''>
               Seleccione un Vendedor
             </option>
-            {vendedores.map((el) => {
-              return <option key={nanoid()} value={el._id}>{`${el.email}`}</option>;
-            })}
+          <option>Alejandra Bastidas Lopez</option>  
+          <option>ALejandra Bastidas</option>  
+          <option>Julian Alberto Tabares</option>  
+            
           </select>
         </label>
 

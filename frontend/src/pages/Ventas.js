@@ -133,6 +133,7 @@ const TablaVentas = ({ loading, listaVentas, setEjecutarConsulta }) => {
                                 <th>Fecha Venta</th>
                                 <th>ID Cliente</th>
                                 <th>Nombre Cliente</th>
+                                <th>Cantidad</th>
                                 <th>Vendedor</th>
                                 <th>Valor Total</th>
                                 <th>Estado</th>
@@ -160,6 +161,7 @@ const TablaVentas = ({ loading, listaVentas, setEjecutarConsulta }) => {
                             <span>{el.fechaVenta}</span>
                             <span>{el.IDcliente}</span>
                             <span>{el.nombreCliente}</span>
+                            <span>{el.cantidad}</span>
                             <span>{el.vendedor}</span>
                             <span>{el.valorTotal}</span>
                         </div>
@@ -179,6 +181,7 @@ const FilaVenta = ({ venta, setEjecutarConsulta }) => {
         valorTotal: venta.valorTotal,
         IDproducto: venta.IDproducto,
         IDcliente: venta.IDcliente,
+        cantidad: venta.cantidad,
         nombreCliente: venta.nombreCliente,
         vendedor: venta.vendedor,
     });
@@ -194,6 +197,7 @@ const FilaVenta = ({ venta, setEjecutarConsulta }) => {
                 fechaVenta: infoNuevaVenta.fechaVenta,
                 IDcliente: infoNuevaVenta.IDcliente,
                 nombreCliente: infoNuevaVenta.nombreCliente,
+                cantidad: infoNuevaVenta.cantidad,
                 vendedor: infoNuevaVenta.vendedor,
             },
             (response) => {
@@ -279,6 +283,16 @@ const FilaVenta = ({ venta, setEjecutarConsulta }) => {
                         <input
                             className='bg-gray-50 border border-gray-600 p-2 rounded-lg m-2'
                             type='text'
+                            value={infoNuevaVenta.cantidad}
+                            onChange={(e) =>
+                                setNuevaVenta({ ...infoNuevaVenta, cantidad: e.target.value })
+                            }
+                        />
+                    </td>
+                    <td>
+                        <input
+                            className='bg-gray-50 border border-gray-600 p-2 rounded-lg m-2'
+                            type='text'
                             value={infoNuevaVenta.vendedor}
                             onChange={(e) =>
                                 setNuevaVenta({ ...infoNuevaVenta, vendedor: e.target.value })
@@ -302,6 +316,7 @@ const FilaVenta = ({ venta, setEjecutarConsulta }) => {
                     <td>{venta.fechaVenta}</td>
                     <td>{venta.IDcliente}</td>
                     <td>{venta.nombreCliente}</td>
+                    <td>{venta.cantidad}</td>
                     <td>{venta.vendedor}</td>
                     <td>{venta.valorTotal}</td>
 

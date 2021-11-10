@@ -62,18 +62,28 @@ function Usuarios() {
             });
     }
 
+    
+
+
+
     return (
-        <div>
-              <div>
+
+        
+    <div className='flex h-full w-full flex-col items-center justify-start p-10 '>
+    <div className='flex flex-col w-full'>
+
+      <div className='flex flex-col'>
+              
             {!token && <Redirect to='/Login' />}
-            <h1>Listar Usuarios</h1>
-            <table>
+            <h2 className='text-2xl text-center font-mono font-bold text-yellow-900'> LISTAR USUARIOS</h2>
+            <div className='hidden md:flex w-full'>
+            <table className='tabla'>
                 <thead>
                     <tr>
                         <th>Id</th>
                         <th>Nombre</th>
                         <th>Rol</th>
-                        <th>Accion</th>
+                        <th>Actualizar</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -95,8 +105,10 @@ function Usuarios() {
                     }
                 </tbody>
             </table>
+            </div>
         </div>
         <ToastContainer position='bottom-center' autoClose={3000} />
+        </div>
         </div>
     )
 }
